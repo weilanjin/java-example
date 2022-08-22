@@ -38,3 +38,8 @@
 #### Promise
 - setSuccess 设置成功结果
 - setFailure 设置失败结果
+
+### pipeline
+#### ChannelHandler
+#### 入站 ChannelInboundHandlerAdapter 的实现
+#### 出站 ChannelOutboundHandlerAdapter 的子类实现
