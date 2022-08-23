@@ -6,6 +6,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.ReferenceCountUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,7 @@ public class TestPipeline {
                                 log.debug("1");
                                 var buf = (ByteBuf) msg;
                                 var message = buf.toString(Charset.defaultCharset());
+                                ReferenceCountUtil.release(msg); // 用完回收
                                 super.channelRead(ctx, message); // 把处理结果交给下一个入栈处理器
                                 // ctx.fireChannelRead(message); // 或者 二选一
                             }
