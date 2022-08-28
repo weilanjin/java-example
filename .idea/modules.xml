@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/java-example.iml" filepath="$PROJECT_DIR$/java-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java-example.iml" filepath="$PROJECT_DIR$/.idea/java-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lovec-netty/lovec-netty.iml" filepath="$PROJECT_DIR$/lovec-netty/lovec-netty.iml" />
     </modules>
   </component>
 </project>

@@ -85,3 +85,10 @@ ReferenceCountUtil.release(msg);
 `如果 Pipeline 各个 handler 中的 ByteBuf 没有中断，则 head 或者 tail默认调用 .release()`
 
 `谁最后使用了 ByteBuf, 谁调用 .release()`
+
+### 滑动窗口
+> 处理半包、粘包现象
+
+`窗口的大小即决定了无需等待应答而可以继续发送的数据最大值`
+
+窗口实际就起到一个缓冲区的作用，同时也能起到流量控制的作用
