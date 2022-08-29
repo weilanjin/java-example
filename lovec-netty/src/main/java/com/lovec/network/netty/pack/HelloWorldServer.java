@@ -10,6 +10,7 @@ import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 // 粘包现象 10 次发送的结果，一次处理
+// 半包现象 一次发送客户端没有接收完。
 @Slf4j
 public class HelloWorldServer {
     static void start() {
@@ -18,6 +19,7 @@ public class HelloWorldServer {
         try {
             var bootstrap = new ServerBootstrap();
             bootstrap.channel(NioServerSocketChannel.class);
+            // bootstrap.option(ChannelOption.SO_RCVBUF, 10); // 设置接收缓冲区，可调整的，自适应
             bootstrap.group(boss, worker);
             bootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
