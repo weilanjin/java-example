@@ -16,6 +16,8 @@ import java.nio.charset.Charset;
 @Slf4j
 public class RedisProtocol {
 
+    private final static LoggingHandler LOGGING_HANDLER = new LoggingHandler();
+
     /*
      redis protocol
         set key value
@@ -38,7 +40,7 @@ public class RedisProtocol {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) {
-                            ch.pipeline().addLast(new LoggingHandler());
+                            ch.pipeline().addLast(LOGGING_HANDLER);
                             ch.pipeline().addLast(new ChannelInboundHandlerAdapter(){
                                 @Override
                                 public void channelActive(ChannelHandlerContext ctx) {

@@ -4,10 +4,12 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.embedded.EmbeddedChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 public class TestLengthFieldDecoder {
+
+    private final static LoggingHandler LOGGING_HANDLER = new LoggingHandler();
+
     public static void main(String[] args) {
         var channel = new EmbeddedChannel(
                 // maxFrameLength 内容最大长度
@@ -17,7 +19,7 @@ public class TestLengthFieldDecoder {
                 // initialBytesToStrip  真正的内容从第字节位开始
                 new LengthFieldBasedFrameDecoder(
                         1024, 0, 4, 1, 5),
-                new LoggingHandler(LogLevel.DEBUG)
+                LOGGING_HANDLER
         );
         var buffer = ByteBufAllocator.DEFAULT.buffer();
         send(buffer, "Hello, world");

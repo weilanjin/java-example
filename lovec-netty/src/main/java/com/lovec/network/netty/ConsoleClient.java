@@ -6,7 +6,6 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringEncoder;
-import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,6 +14,9 @@ import java.util.Scanner;
 
 @Slf4j
 public class ConsoleClient {
+
+    private final static LoggingHandler LOGGING_HANDLER = new LoggingHandler();
+
     public static void main(String[] args) throws InterruptedException {
         var group = new NioEventLoopGroup();
         var channel = new Bootstrap()
@@ -24,7 +26,7 @@ public class ConsoleClient {
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
                         ch.pipeline()
-                                .addLast(new LoggingHandler(LogLevel.DEBUG)) // 添加调试信息
+                                .addLast(LOGGING_HANDLER) // 添加调试信息
                                 .addLast(new StringEncoder());
                     }
                 })

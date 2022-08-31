@@ -18,6 +18,9 @@ import static io.netty.handler.codec.http.HttpHeaderNames.CONTENT_LENGTH;
 
 @Slf4j
 public class TestHttpServer {
+
+    private final static LoggingHandler LOGGING_HANDLER = new LoggingHandler();
+
     public static void main(String[] args) {
         var boss = new NioEventLoopGroup();
         var worker = new NioEventLoopGroup();
@@ -29,7 +32,7 @@ public class TestHttpServer {
                         @Override
                         protected void initChannel(SocketChannel ch) {
                             ch.pipeline()
-                                    .addLast(new LoggingHandler())
+                                    .addLast(LOGGING_HANDLER)
                                     .addLast(new HttpServerCodec())
                                     .addLast(new SimpleChannelInboundHandler<HttpRequest>(){
                                         @Override
